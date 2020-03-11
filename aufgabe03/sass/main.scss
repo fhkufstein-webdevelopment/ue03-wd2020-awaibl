@@ -10,22 +10,27 @@
 
 
 .btn {
-    /* TODO */
+    transition-property: padding;
+    transition-duration: 300ms; //bei 600ms dauert länger
+    transition-delay: 0ms; //dauert länger bis wieder in Ursprung zurückgeht
+    transition-timing-function: linear;
+
+    //Auswirkungen: Dynamik der Website, damit man sich auf einzelne Inhalte fokussieren kann, Inhalt wirkt interessanter und wichtiger
 
     &.ease-in {
-        /* TODO */
+        transition-timing-function: ease-in;//startet langsam wird dann schneller
     }
 
     &.ease-out {
-        /* TODO */
+        transition-timing-function: ease-out;//startet schnell und wird dann langsamer
     }
 
     &.ease-in-out {
-        /* TODO */
+        transition-timing-function: ease-in-out;//startet ein wenig schneller als es anfängt
     }
 
     &.green {
-        /* TODO */
+        transition-property: all; //finde keinen Unterschied aber ich denke bei color sollte grün erscheinen, bei padding die Größe animiert werden und bei all beides
     }
 
     &.animation {
@@ -41,6 +46,11 @@
 body:hover .animation {
     animation-name:myanimation2;
     animation-duration:5s;
+}
+
+.myanimation{
+    transition-property: position;
+
 }
 
 
