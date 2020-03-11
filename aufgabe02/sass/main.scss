@@ -1,6 +1,10 @@
 @import "compass/reset";
 @import "compass/css3";
 
+$red = #d9534f;
+$orange = #f0ad4e;
+$green = #5cb85c;
+
 body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -18,14 +22,14 @@ body {
 input[type="text"],input[type="password"] {
     border:1px solid #000;
     padding:5px;
-    margin:10px 5px 10px 5px;
+    margin:10px 5px 10px 5px; //kann man Teile von Block auch vererben?
 
     width: 180px;
 }
 
 input[type="submit"] {
     border:1px solid #000;
-    border-radius:0;
+    @include border-radius(0);
     background-color:#fafafa;
     margin:10px 5px 10px 5px;
     cursor:pointer;
@@ -49,19 +53,13 @@ label {
     margin:10px 5px 10px 5px;
     font-size:11px;
     font-weight:600;
-
-}
-
-.feedback.error {
-    color:#d9534f;
-}
-
-.feedback.warning {
-    color:#f0ad4e;
-}
-
-.feedback.success {
-    color:#5cb85c;
+        &.error {
+        color:$red;
+    }&.warning {
+         color: $orange;
+     }&.success {
+                       color:$green;
+                   }
 }
 
 .strengthIndicator {
@@ -70,54 +68,55 @@ label {
     padding:5px;
     height: 13px;
     border:1px solid #d3d3d3;
+
+    &::before {
+        content: "";
+        @extend .warning .feedback.warning;
+        height: 100%;
+
+        -moz-transition-property: width;
+        -o-transition-property: width;
+        -webkit-transition-property: width;
+        transition-property: width;
+
+        -moz-transition-delay: 0;
+        -o-transition-delay: 0;
+        -webkit-transition-delay: 0;
+        transition-delay: 0;
+
+        -moz-transition-duration: 250ms;
+        -o-transition-duration: 250ms;
+        -webkit-transition-duration: 250ms;
+        transition-duration: 250ms;
+
+        -moz-transition-timing-function: linear;
+        -o-transition-timing-function: linear;
+        -webkit-transition-timing-function: linear;
+        transition-timing-function: linear;
+    }
 }
 
-.strengthIndicator::before {
-    content: "";
-    display: block;
-    height: 100%;
-
-    -moz-transition-property: width;
-    -o-transition-property: width;
-    -webkit-transition-property: width;
-    transition-property: width;
-
-    -moz-transition-delay: 0;
-    -o-transition-delay: 0;
-    -webkit-transition-delay: 0;
-    transition-delay: 0;
-
-    -moz-transition-duration: 250ms;
-    -o-transition-duration: 250ms;
-    -webkit-transition-duration: 250ms;
-    transition-duration: 250ms;
-
-    -moz-transition-timing-function: linear;
-    -o-transition-timing-function: linear;
-    -webkit-transition-timing-function: linear;
-    transition-timing-function: linear;
-}
 
 .passwordWrapper::after {
     content: "";
-    display: block;
+    @extend .warning .feedback.warning;
     clear: both;
     float: none;
 }
 
 .error .strengthIndicator::before {
     width: 10%;
-    background-color: #d9534f;
+    background-color: $red;
 }
 
 .warning .strengthIndicator::before {
     width: 60%;
-    background-color: #f0ad4e;
+    background-color: $orange;
 }
 
 .success .strengthIndicator::before {
     width: 100%;
-    background-color: #5cb85c;
+    background-color: $green;
 }
 
 .feedback.error, .feedback.warning, .feedback.success {
@@ -129,10 +128,10 @@ label {
 }
 
 .warning .feedback.warning {
-    display: block;
+    @extend .warning .feedback.warning;
 }
 
 .success .feedback.success {
-    display: block;
+    @extend .warning .feedback.warning;
 }
 
