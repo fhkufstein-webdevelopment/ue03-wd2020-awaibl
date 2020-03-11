@@ -1,0 +1,17 @@
+$margin1 = @include margin(5px);
+$margin2 = @include margin(5px 10px);
+$margin3 = @include margin(5px 8px 10px);
+$margin4 = @include margin(5px 8px 10px 14px);
+
+@mixin breakpoint ($width){
+  @media (min-width: $width){
+    width: 300px;
+  }
+}
+
+.mobileInvisible {
+  display:none;
+  @include breakpoint(990px) {
+    display: block;
+  }
+}
